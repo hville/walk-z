@@ -2,21 +2,20 @@ var rndZ = require('random-z')
 
 module.exports = walker
 
-function walker(seed) {
-	var rnd = seed || rndZ,
-			xs = [0, 1],
-			ys = [0, rnd()]
+function walker() {
+	var xs = [0],
+			ys = [0]
 
-	return function walk(time) {
+	return function walk(time, zSeed) {
 		if (time === 0) return 0
 		var xx = time,
 				j = upperBound(xs, xx)
 		if (xs[j] === xx) return ys[j]
-		var yy = rnd(),
+		var yy = (zSeed === undefined) ? rndZ() : zSeed,
 				dxi = xx - xs[j-1]
 
 		// normal case, memoryless, going on without a purpose
-		if (j === xs.length) {
+		if (j === xs.length || xs.length === 1) {
 			yy *= Math.sqrt(dxi)
 			yy += ys[j-1]
 
