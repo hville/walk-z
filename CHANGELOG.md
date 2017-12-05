@@ -9,7 +9,7 @@
 ~~Removed, Changed, Deprecated, Added, Fixed, Security~~
 - one fewer array created
 
-## [2.1.0] - 2017-12-05
+## [2.1.1] - 2017-12-05
 ### Changed
 - Simplified project structure
 - Added JSDoc and type notes

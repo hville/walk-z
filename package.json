@@ -1,6 +1,6 @@
 {
   "name": "walk-z",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "approximation of a random walk time serie",
   "author": "Hugo Villeneuve",
   "license": "MIT",
@@ -16,12 +16,12 @@
     "url": "https://github.com/hville/walk-z"
   },
   "dependencies": {
-    "random-z": "^1.0.0"
+    "random-z": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^8.0.55",
     "cotest": "^3.0.0",
-    "node-scatterplot": "^0.2.1"
+    "node-scatterplot": "^1.0.0"
   },
   "scripts": {
     "test": "node ./test",
