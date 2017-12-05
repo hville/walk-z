@@ -1,5 +1,5 @@
 var ct = require('cotest'),
-		TZ = require('./walk-z')
+		TZ = require('./')
 
 function normTest(first, last, fab, ttl) {
 	var sum = 0,
