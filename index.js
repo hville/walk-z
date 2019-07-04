@@ -1,17 +1,23 @@
-var rndZ = require('random-z')
+var iZ = require('norm-dist/icdf')
 
-module.exports = walker
-
-function walker() {
+/**
+ * @return {function(number, number): number}
+ */
+module.exports = function() {
 	var xs = [0],
 			ys = [0]
 
+	/**
+	 * @param {number} time
+	 * @param {number} [zSeed]
+	 * @return {number}
+	 */
 	return function walk(time, zSeed) {
 		if (time === 0) return 0
 		var xx = time,
 				j = upperBound(xs, xx)
 		if (xs[j] === xx) return ys[j]
-		var yy = (zSeed === undefined) ? rndZ() : zSeed,
+		var yy = (zSeed === undefined) ? iZ(Math.random()) : zSeed,
 				dxi = xx - xs[j-1]
 
 		// normal case, memoryless, going on without a purpose
@@ -24,7 +30,7 @@ function walker() {
 			return yy
 		}
 
-		// the future is already set try to get in line
+		// the future is already set, try to get in line...
 		/*
 			fa(y) = Ka * exp(- (y-ya)^2 / 2(x-xa) )
 			fb(y) = Kb * exp(- (yb-y)^2 / 2(xb-x) )
@@ -45,7 +51,13 @@ function walker() {
 		return yy
 	}
 }
-// binary search, return index<=target or arr.length
+
+/**
+ * binary search, return index<=target or arr.length
+ * @param {Array<number>} arr
+ * @param {number} v
+ * @return {number}
+ */
 function upperBound(arr, v) {
 	var low = 0,
 			high = arr.length

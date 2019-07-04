@@ -1,5 +1,5 @@
 var ct = require('cotest'),
-		TZ = require('./walk-z')
+		TZ = require('./')
 
 function normTest(first, last, fab, ttl) {
 	var sum = 0,
@@ -28,10 +28,10 @@ function normTest(first, last, fab, ttl) {
 			scaledVariance = sum2 / N - scaledAverage * scaledAverage,
 			variance = sumii / N - average*average,
 			autocorrel = (sumij / N - average*average) / variance
-	ct(ttl + ': ave, var, cor', function () {
-		ct('<', Math.abs(scaledAverage), 0.1)
-		ct('<', Math.abs(scaledVariance - 1), 0.1)
-		ct('<', Math.abs(autocorrel - 1), 0.05)
+	ct(ttl + ': ave, var, cor', t => {
+		t('<', Math.abs(scaledAverage), 0.1)
+		t('<', Math.abs(scaledVariance - 1), 0.1)
+		t('<', Math.abs(autocorrel - 1), 0.05)
 	})
 }
 
